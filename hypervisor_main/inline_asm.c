@@ -323,3 +323,4 @@ inline void INVEPT(QWORD Type, QWORD EPTP)
 	
 	asm ( "invept %0, %1" : : "r"(Type), "m"(INVDT) );  
 }
+

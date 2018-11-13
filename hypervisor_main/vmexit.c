@@ -405,3 +405,4 @@ void VMEnter_error()
 		HLT();
 	}
 }
+

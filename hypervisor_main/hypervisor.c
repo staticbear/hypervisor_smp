@@ -16,6 +16,7 @@ void main()
 		ExitSpinLock((void *)(SERIAL_EVENT_addr));
 		InitLongModeGdt();	
 		InitLongModeIdt(get_isr_addr());
+		// disable USB Legacy support
 		outd(0x430, ind(0x430) & ~(1UL << 17));		
 	}
 		
@@ -31,12 +32,6 @@ void main()
 	InitMTRR();
 	
 	InitControlAndSegmenRegs();
-	
-	//debug output
-	//if(IsBsp()){
-	//	SerialPrintDigit64(*(QWORD*)DEBUG_EVENT_addr);
-	//	*(QWORD*)DEBUG_EVENT_addr = 0;
-	//}
 	
 	if(!CheckVMXConditions())
 		while(1);
@@ -71,7 +66,7 @@ void main()
 		SerialPrintStr64("AP started.");
 	}
 	else{
-		
+		// enable USB Legacy support
 		outd(0x430, ind(0x430) | (1UL << 17));
 		// enable PIC
 		outb(0xA1, 0);

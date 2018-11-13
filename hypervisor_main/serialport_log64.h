@@ -8,3 +8,4 @@
 void InitSerialPort();
 void SerialPrintStr64(BYTE *ptrStr);
 void SerialPrintDigit64(QWORD val);
+
